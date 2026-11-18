@@ -1,1 +1,729 @@
-<!doctype html><html lang="ru"><head>  <meta charset="utf-8">  <meta name="viewport" content="width=device-width, initial-scale=1">  <meta name="theme-color" content="#10110f">  <meta name="description" content="Попробуйте вайбкодинг на практике: создайте первый сайт, посмотрите программу курса и получите 7 дней пробного доступа через канал MAX.">  <title>Вайбкодинг — попробуйте за 7 дней</title>  <style>    :root {      color-scheme: dark;      --ink: #f5f4ed;      --muted: #a7aaa0;      --base: #10110f;      --panel: #191b18;      --line: rgba(245, 244, 237, .12);      --lime: #d7ff63;      --lilac: #b6a2ff;      --coral: #ff886e;      --page: min(1160px, calc(100% - 48px));    }    * { box-sizing: border-box; }    html { scroll-behavior: smooth; scroll-padding-top: 88px; }    body {      margin: 0;      background: var(--base);      color: var(--ink);      font-family: Inter, "Segoe UI", Arial, sans-serif;      font-size: 16px;      line-height: 1.55;      -webkit-font-smoothing: antialiased;    }    a { color: inherit; }    button, a { -webkit-tap-highlight-color: transparent; }    button { font: inherit; }
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10110f">
+  <meta name="description" content="Попробуйте вайбкодинг на практике: создайте первый сайт, посмотрите программу курса и получите 7 дней пробного доступа через канал MAX.">
+  <title>Вайбкодинг — попробуйте за 7 дней</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f5f4ed;
+      --muted: #a7aaa0;
+      --base: #10110f;
+      --panel: #191b18;
+      --line: rgba(245, 244, 237, .12);
+      --lime: #d7ff63;
+      --lilac: #b6a2ff;
+      --coral: #ff886e;
+      --page: min(1160px, calc(100% - 48px));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--base);
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    .wrap { width: var(--page); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--lime);
+      font-size: .73rem;
+      font-weight: 750;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 16px currentColor;
+      content: "";
+    }
+    .topbar {
+      position: relative;
+      z-index: 3;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .nav {
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-size: .91rem;
+      font-weight: 800;
+      letter-spacing: -.035em;
+    }
+    .brand-mark {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--lime);
+      color: var(--base);
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a {
+      color: #c3c4bd;
+      font-size: .83rem;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover { color: var(--lime); }
+    .nav-cta {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 17px;
+      border: 1px solid rgba(215,255,99,.48);
+      border-radius: 999px;
+      color: var(--lime) !important;
+      font-weight: 700;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: 80px 0 82px;
+      background:
+        radial-gradient(ellipse at 74% 40%, rgba(128, 101, 190, .18), transparent 34%),
+        radial-gradient(ellipse at 16% 4%, rgba(215, 255, 99, .07), transparent 25%),
+        #10110f;
+    }
+    .hero::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.026) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, black, transparent 86%);
+      content: "";
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 42px; }
+    .hero-copy { position: relative; z-index: 1; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 700px;
+      margin: 22px 0 20px;
+      font-size: clamp(3.1rem, 7vw, 6.05rem);
+      font-weight: 760;
+      letter-spacing: -.078em;
+      line-height: .96;
+    }
+    h1 span { color: var(--lime); }
+    .hero-lead { max-width: 520px; color: #c2c3bb; font-size: 1.08rem; line-height: 1.7; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 29px; }
+    .button {
+      display: inline-flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      padding: 0 21px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      font-size: .9rem;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary {
+      background: var(--lime);
+      box-shadow: 0 8px 34px rgba(215,255,99,.15);
+      color: #17190f;
+    }
+    .button-primary:hover { box-shadow: 0 12px 40px rgba(215,255,99,.27); }
+    .button-secondary { border-color: var(--line); color: var(--ink); }
+    .button-secondary:hover { background: rgba(255,255,255,.055); }
+    .button svg { width: 17px; height: 17px; }
+    .microcopy { margin: 15px 0 0; color: #90928a; font-size: .76rem; }
+    .hero-art {
+      position: relative;
+      display: grid;
+      min-height: 438px;
+      place-items: center;
+      perspective: 1000px;
+    }
+    .orbit {
+      position: absolute;
+      width: min(88%, 430px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(215,255,99,.22);
+      border-radius: 50%;
+      transform: rotate(-24deg) scaleY(.55);
+      box-shadow: 0 0 60px rgba(182,162,255,.08), inset 0 0 38px rgba(182,162,255,.07);
+      animation: orbit 15s linear infinite;
+    }
+    .orbit::before, .orbit::after {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 20px var(--lime);
+      content: "";
+    }
+    .orbit::before { top: 14%; left: 18%; }
+    .orbit::after { right: 12%; bottom: 20%; width: 6px; height: 6px; background: var(--lilac); box-shadow: 0 0 18px var(--lilac); }
+    .code-card {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 412px);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(37,39,35,.97), rgba(22,23,22,.95));
+      box-shadow: 0 32px 85px rgba(0,0,0,.42), 0 0 60px rgba(182,162,255,.12);
+      transform: rotateY(-7deg) rotateX(3deg);
+      animation: float 6s ease-in-out infinite;
+    }
+    .code-head { display: flex; height: 51px; align-items: center; gap: 7px; padding: 0 16px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff8175; }
+    .dot:nth-child(2) { background: #ffd166; }
+    .dot:nth-child(3) { background: #9de56b; }
+    .filename { margin-left: 9px; color: #adafa7; font: 11px/1.2 "Cascadia Code", Consolas, monospace; }
+    .code-body { padding: 23px 24px 21px; }
+    .code-label { margin-bottom: 13px; color: #8d9187; font: 10px/1.4 "Cascadia Code", Consolas, monospace; }
+    .code-body pre { margin: 0; color: #d6d9cd; font: 12px/1.9 "Cascadia Code", Consolas, monospace; white-space: pre-wrap; }
+    .code-body .purple { color: #c5a9ff; }
+    .code-body .green { color: var(--lime); }
+    .code-body .orange { color: #ffae83; }
+    .preview {
+      margin-top: 17px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 11px;
+      background: #242621;
+    }
+    .preview-tag { color: #969a8e; font-size: .62rem; letter-spacing: .11em; text-transform: uppercase; }
+    .preview-title { margin: 8px 0 4px; color: var(--lime); font-size: 1.18rem; font-weight: 750; letter-spacing: -.05em; }
+    .preview-desc { margin: 0; color: #b5b7ad; font-size: .7rem; }
+    .floating-note {
+      position: absolute;
+      right: -3px;
+      bottom: 22px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 15px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 13px;
+      background: #24251f;
+      box-shadow: 0 15px 45px rgba(0,0,0,.35);
+      font-size: .74rem;
+      animation: float 5s ease-in-out -1s infinite;
+    }
+    .note-icon { display: grid; width: 31px; height: 31px; place-items: center; border-radius: 9px; background: rgba(215,255,99,.14); color: var(--lime); font-size: 1rem; }
+    .floating-note strong { display: block; font-size: .79rem; }
+    .floating-note span { color: #9da095; }
+    .trust-row { display: flex; flex-wrap: wrap; gap: 9px 23px; margin-top: 33px; color: #a9aaa2; font-size: .73rem; }
+    .trust-row span { display: inline-flex; align-items: center; gap: 7px; }
+    .trust-row b { color: var(--lime); font-size: .9rem; }
+    .strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #151714; }
+    .strip-inner { display: flex; min-height: 74px; align-items: center; justify-content: space-between; gap: 20px; }
+    .strip-label { color: #8e9187; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .strip-items { display: flex; flex-wrap: wrap; gap: 12px 28px; color: #d6d8ce; font-size: .78rem; }
+    .section { padding: 100px 0; }
+    .section-heading { max-width: 660px; margin-bottom: 39px; }
+    h2 { margin: 13px 0 13px; font-size: clamp(2.2rem, 4.7vw, 3.6rem); font-weight: 730; letter-spacing: -.07em; line-height: 1.04; }
+    .section-heading p { max-width: 560px; margin-bottom: 0; color: var(--muted); font-size: .98rem; line-height: 1.75; }
+    .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+    .feature {
+      min-height: 210px;
+      padding: 22px 20px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      transition: border-color .25s ease, transform .25s ease;
+    }
+    .feature:hover { transform: translateY(-4px); border-color: rgba(215,255,99,.38); }
+    .feature-icon { display: grid; width: 39px; height: 39px; margin-bottom: 25px; place-items: center; border-radius: 11px; background: rgba(215,255,99,.11); color: var(--lime); font-size: 1.1rem; }
+    .feature:nth-child(2) .feature-icon { background: rgba(182,162,255,.13); color: var(--lilac); }
+    .feature:nth-child(3) .feature-icon { background: rgba(255,136,110,.12); color: var(--coral); }
+    .feature h3 { margin-bottom: 8px; font-size: .96rem; letter-spacing: -.025em; }
+    .feature p { margin: 0; color: #a1a39a; font-size: .78rem; line-height: 1.65; }
+    .path-section { background: #e9ebdd; color: #171913; }
+    .path-section .eyebrow { color: #546128; }
+    .path-section .section-heading p { color: #62675b; }
+    .path-grid {
+      display: grid;
+      grid-template-areas: "intro steps" "gift steps";
+      grid-template-columns: .8fr 1.2fr;
+      grid-template-rows: min-content auto;
+      gap: 35px 56px;
+      align-items: start;
+    }
+    .path-grid > .section-heading { grid-area: intro; }
+    .path-grid > .steps { grid-area: steps; }
+    .path-grid > .gift-card { grid-area: gift; }
+    .gift-card {
+      position: sticky;
+      top: 25px;
+      overflow: hidden;
+      padding: 27px;
+      border-radius: 18px;
+      background: #191b17;
+      color: var(--ink);
+    }
+    .gift-card::after {
+      position: absolute;
+      top: -63px;
+      right: -51px;
+      width: 170px;
+      height: 170px;
+      border: 1px solid rgba(215,255,99,.38);
+      border-radius: 50%;
+      box-shadow: 0 0 0 20px rgba(215,255,99,.04), 0 0 0 40px rgba(215,255,99,.035);
+      content: "";
+    }
+    .gift-kicker { color: var(--lime); font-size: .7rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .gift-number { margin: 26px 0 0; color: var(--lime); font-size: 5.2rem; font-weight: 750; letter-spacing: -.11em; line-height: .9; }
+    .gift-unit { margin: 9px 0 19px; font-size: 1.22rem; font-weight: 690; letter-spacing: -.045em; }
+    .gift-card p { margin-bottom: 22px; color: #acafa4; font-size: .83rem; }
+    .gift-card .button { width: 100%; }
+    .gift-caption { margin: 12px 0 0 !important; color: #85897e !important; font-size: .68rem !important; text-align: center; }
+    .steps { display: grid; gap: 0; }
+    .step {
+      display: grid;
+      grid-template-columns: 47px 1fr;
+      gap: 18px;
+      padding: 0 0 26px;
+      border-bottom: 1px solid rgba(24,27,19,.14);
+    }
+    .step + .step { padding-top: 24px; }
+    .step:last-child { padding-bottom: 0; border-bottom: 0; }
+    .step-number {
+      display: grid;
+      width: 39px;
+      height: 39px;
+      place-items: center;
+      border: 1px solid rgba(24,27,19,.2);
+      border-radius: 50%;
+      color: #34372d;
+      font-size: .75rem;
+      font-weight: 750;
+    }
+    .step h3 { margin: 2px 0 6px; font-size: 1.02rem; letter-spacing: -.03em; }
+    .step p { max-width: 500px; margin: 0; color: #5e6257; font-size: .82rem; line-height: 1.7; }
+    .curriculum { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+    .module {
+      position: relative;
+      min-height: 190px;
+      overflow: hidden;
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--panel);
+    }
+    .module-index { color: var(--lime); font: 700 .7rem/1 "Cascadia Code", Consolas, monospace; }
+    .module h3 { max-width: 230px; margin: 23px 0 8px; font-size: 1.12rem; letter-spacing: -.04em; }
+    .module p { margin: 0; color: #a1a39b; font-size: .77rem; line-height: 1.7; }
+    .module::after { position: absolute; right: -16px; bottom: -28px; width: 90px; height: 90px; border: 1px solid rgba(215,255,99,.18); border-radius: 50%; box-shadow: 0 0 0 12px rgba(215,255,99,.025); content: ""; }
+    .module:nth-child(2)::after { border-color: rgba(182,162,255,.25); box-shadow: 0 0 0 12px rgba(182,162,255,.035); }
+    .module:nth-child(3)::after { border-color: rgba(255,136,110,.24); box-shadow: 0 0 0 12px rgba(255,136,110,.03); }
+    .course-note { display: flex; gap: 12px; margin-top: 18px; padding: 15px 17px; border: 1px solid rgba(215,255,99,.23); border-radius: 12px; background: rgba(215,255,99,.045); }
+    .course-note span { color: var(--lime); }
+    .course-note p { margin: 0; color: #b1b3a9; font-size: .76rem; line-height: 1.65; }
+    .channel-section { padding-top: 30px; }
+    .channel-box {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 35px;
+      padding: 38px 42px;
+      border: 1px solid rgba(182,162,255,.28);
+      border-radius: 20px;
+      background:
+        radial-gradient(ellipse at 90% 50%, rgba(182,162,255,.17), transparent 32%),
+        linear-gradient(125deg, #1a1b22, #171914);
+    }
+    .channel-box h2 { max-width: 620px; margin-bottom: 11px; font-size: clamp(1.9rem, 4vw, 3rem); }
+    .channel-box p { max-width: 580px; margin-bottom: 0; color: #aeb0b6; font-size: .87rem; line-height: 1.7; }
+    .channel-box .button { min-width: 220px; }
+    .faq { display: grid; grid-template-columns: .72fr 1.28fr; gap: 65px; }
+    .faq .section-heading { margin: 0; }
+    .faq-list { border-top: 1px solid var(--line); }
+    details { border-bottom: 1px solid var(--line); }
+    summary {
+      position: relative;
+      padding: 20px 34px 20px 0;
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 650;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { position: absolute; top: 17px; right: 1px; color: var(--lime); font-size: 1.25rem; font-weight: 400; content: "+"; transition: transform .2s ease; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { max-width: 650px; margin: -4px 0 19px; color: #aaaca3; font-size: .81rem; line-height: 1.75; }
+    .footer { padding: 28px 0 35px; border-top: 1px solid var(--line); }
+    .footer-main { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .footer .brand { font-size: .83rem; }
+    .footer-copy { max-width: 610px; margin: 0; color: #85887f; font-size: .68rem; line-height: 1.65; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; margin-top: 17px; color: #6f726a; font-size: .65rem; }
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 9;
+      width: min(390px, calc(100% - 32px));
+      padding: 16px 18px;
+      border: 1px solid rgba(215,255,99,.35);
+      border-radius: 12px;
+      background: #22241e;
+      box-shadow: 0 16px 50px rgba(0,0,0,.44);
+      color: #eceee4;
+      font-size: .8rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -9px; } }
+    @keyframes orbit { to { rotate: 360deg; } }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr .9fr; gap: 20px; }
+      .hero-art { min-height: 380px; }
+      .features { grid-template-columns: repeat(2, 1fr); }
+      .path-grid { gap: 32px; }
+      .faq { gap: 36px; }
+    }
+    @media (max-width: 680px) {
+      :root { --page: min(100% - 36px, 500px); }
+      html { scroll-padding-top: 20px; }
+      .nav { min-height: 66px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links { gap: 0; }
+      .nav-cta { min-height: 38px; padding-inline: 13px; font-size: .75rem !important; }
+      .hero { padding: 59px 0 55px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 8px; }
+      h1 { max-width: 520px; font-size: clamp(3.2rem, 15vw, 5rem); }
+      .hero-lead { max-width: 470px; font-size: .96rem; }
+      .hero-actions { align-items: stretch; }
+      .hero-actions .button { flex: 1 1 100%; }
+      .hero-actions .button-secondary { display: none; }
+      .hero-art { min-height: 360px; margin-top: 3px; }
+      .code-card { width: min(100%, 390px); }
+      .floating-note { right: -2px; bottom: 0; }
+      .trust-row { gap: 10px 18px; margin-top: 25px; }
+      .strip-inner { align-items: flex-start; flex-direction: column; justify-content: center; gap: 8px; padding-block: 16px; }
+      .strip-items { gap: 8px 16px; font-size: .7rem; }
+      .section { padding: 74px 0; }
+      .section-heading { margin-bottom: 27px; }
+      .features { gap: 10px; }
+      .feature { min-height: 190px; padding: 17px; }
+      .feature-icon { margin-bottom: 19px; }
+      .path-grid { grid-template-areas: "intro" "steps" "gift"; grid-template-columns: 1fr; grid-template-rows: auto; gap: 28px; }
+      .gift-card { position: relative; top: auto; }
+      .curriculum { grid-template-columns: 1fr; gap: 10px; }
+      .module { min-height: 155px; padding: 20px; }
+      .module h3 { margin-top: 17px; }
+      .channel-section { padding-top: 0; }
+      .channel-box { grid-template-columns: 1fr; gap: 23px; padding: 26px 22px; }
+      .channel-box .button { width: 100%; }
+      .faq { grid-template-columns: 1fr; gap: 22px; }
+      .footer-main { align-items: flex-start; flex-direction: column; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (max-width: 380px) {
+      :root { --page: calc(100% - 28px); }
+      .features { grid-template-columns: 1fr; }
+      .feature { min-height: auto; }
+      .feature-icon { margin-bottom: 13px; }
+      .hero-art { min-height: 328px; }
+      .code-body { padding: 19px; }
+      .floating-note { right: -4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Основная навигация">
+      <a class="brand" href="#top" aria-label="Вайбкодинг — на главную">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>ВАЙБ<span style="color:var(--lime)">/</span>КОДИНГ</span>
+      </a>
+      <div class="nav-links">
+        <a href="#program">Что внутри</a>
+        <a href="#steps">Как начать</a>
+        <a href="#faq">Вопросы</a>
+        <a class="nav-cta max-link" href="#signup">Забрать подарок <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-grid wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">Практика вместо сложного старта</span>
+          <h1>Идея есть.<br>Код? <span>Не нужен.</span></h1>
+          <p class="hero-lead">Попробуйте вайбкодинг: создайте первый сайт с помощью ИИ и разберитесь, как превратить навыки в полезные цифровые проекты.</p>
+          <div class="hero-actions">
+            <a class="button button-primary max-link" href="#signup">
+              Попробовать 7 дней
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="button button-secondary" href="#program">Посмотреть программу</a>
+          </div>
+          <p class="microcopy">Бесплатный пробный доступ на 7 дней · подарок выдаётся через канал MAX</p>
+          <div class="trust-row" aria-label="Что будет в пробном доступе">
+            <span><b>✳</b> Без опыта в коде</span>
+            <span><b>✳</b> Пошаговые уроки</span>
+            <span><b>✳</b> Свой первый проект</span>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="Иллюстрация создания сайта с ИИ">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="code-card">
+            <div class="code-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="filename">мой-первый-проект.html</span></div>
+            <div class="code-body">
+              <p class="code-label">// идея превращается в прототип</p>
+              <pre><span class="purple">const</span> idea = <span class="green">"мой сайт"</span>;
+<span class="purple">const</span> помощник = <span class="orange">ИИ</span>.объясни(idea);
+
+<span class="orange">попроси</span>(помощник, <span class="green">"создай страницу"</span>);
+<span class="orange">проверь</span>(результат);
+<span class="orange">улучши</span>(своими словами);
+
+<span class="green">✓ Первый прототип готов</span></pre>
+              <div class="preview">
+                <span class="preview-tag">твой следующий шаг</span>
+                <p class="preview-title">От идеи — к запуску.</p>
+                <p class="preview-desc">Без магии. Просто понятный план и практика.</p>
+              </div>
+            </div>
+          </div>
+          <div class="floating-note"><span class="note-icon" aria-hidden="true">✦</span><div><strong>Уже за 7 дней</strong><span>попробуешь на практике</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip" aria-label="Навыки в программе">
+      <div class="strip-inner wrap">
+        <span class="strip-label">Изучай и собирай</span>
+        <div class="strip-items"><span>Сайты</span><span>↗</span><span>Контент</span><span>↗</span><span>ИИ-помощники</span><span>↗</span><span>Реклама</span></div>
+      </div>
+    </div>
+
+    <section class="section wrap" id="program">
+      <div class="section-heading reveal">
+        <span class="eyebrow">Навык, который можно применить</span>
+        <h2>Не просто смотреть.<br>Делать руками.</h2>
+        <p>Разберитесь, как работать с ИИ и собирать проекты для себя, эксперта или небольшого бизнеса — шаг за шагом и без обязательного опыта в программировании.</p>
+      </div>
+      <div class="features">
+        <article class="feature reveal">
+          <span class="feature-icon" aria-hidden="true">⌘</span>
+          <h3>Сайты и страницы</h3>
+          <p>Превратите идею в аккуратный сайт: от структуры и текста до первого запуска.</p>
+        </article>
+        <article class="feature reveal">
+          <span class="feature-icon" aria-hidden="true">◈</span>
+          <h3>Упаковка соцсетей</h3>
+          <p>Соберите понятное оформление и контент, который объясняет ценность проекта.</p>
+        </article>
+        <article class="feature reveal">
+          <span class="feature-icon" aria-hidden="true">↗</span>
+          <h3>Реклама и продвижение</h3>
+          <p>Изучите основы рекламных материалов и тестирования идей без обещаний «лёгких денег».</p>
+        </article>
+        <article class="feature reveal">
+          <span class="feature-icon" aria-hidden="true">✳</span>
+          <h3>ИИ-помощники</h3>
+          <p>Попробуйте создавать ассистентов, которые помогают отвечать на вопросы и вести диалог с клиентом.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section path-section" id="steps">
+      <div class="path-grid wrap">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Твой подарок</span>
+          <h2>Сначала попробуй.<br>Потом решай.</h2>
+          <p>Семь дней, чтобы изучить вводные уроки и понять формат. Без обязательства покупать полный курс.</p>
+        </div>
+        <div class="steps reveal">
+          <article class="step">
+            <span class="step-number">01</span>
+            <div><h3>Подпишись на MAX</h3><p>Открой канал по кнопке ниже и нажми «Подписаться» — материалы и новости будут в одном месте.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">02</span>
+            <div><h3>Забери стартовый подарок</h3><p>В канале получишь инструкцию, как быстро создать свой канал в MAX, если у тебя его пока нет, и информацию о доступе.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">03</span>
+            <div><h3>Проверь вайбкодинг на практике</h3><p>Зайди в курс на Goodly.pro, изучи доступные уроки и сделай первый шаг к собственному проекту.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">04</span>
+            <div><h3>Выбери свой темп</h3><p>В программе есть бесплатные и платные уроки. Условия и стоимость платных материалов будут показаны до покупки.</p></div>
+          </article>
+        </div>
+        <aside class="gift-card reveal" id="signup">
+          <span class="gift-kicker">Подарок за подписку</span>
+          <p class="gift-number">7</p>
+          <p class="gift-unit">дней пробного доступа</p>
+          <p>Попробуй формат курса и забери отдельную инструкцию по созданию канала MAX.</p>
+          <a class="button button-primary max-link" href="#signup">Перейти в канал MAX <span aria-hidden="true">↗</span></a>
+          <p class="gift-caption">Пробный доступ не обязывает покупать полный курс</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-heading reveal">
+        <span class="eyebrow">Дальше — больше практики</span>
+        <h2>Собери свою цифровую мастерскую.</h2>
+        <p>Программа помогает связать инструменты в понятный процесс: от первой идеи до проекта, который можно развивать.</p>
+      </div>
+      <div class="curriculum">
+        <article class="module reveal"><span class="module-index">01 / СОЗДАЙ</span><h3>Идея и первый сайт</h3><p>Формулируй задачу, работай с ИИ и собирай страницы для своих проектов.</p></article>
+        <article class="module reveal"><span class="module-index">02 / УПАКУЙ</span><h3>Контент и коммуникация</h3><p>Оформляй соцсети, готовь полезные материалы и настраивай ответы помощника.</p></article>
+        <article class="module reveal"><span class="module-index">03 / РАЗВИВАЙ</span><h3>Продвижение и продукты</h3><p>Изучай рекламу и упаковку цифровых продуктов. Права перепродажи проверяй по условиям конкретного продукта.</p></article>
+      </div>
+      <div class="course-note reveal"><span aria-hidden="true">✳</span><p>Пробный период — это возможность познакомиться с форматом. Полная программа может включать платные уроки. Наличие прав перепродажи, правила размещения и порядок выплат зависят от условий конкретного продукта на Goodly.pro. Доход не гарантируется.</p></div>
+    </section>
+
+    <section class="section channel-section wrap">
+      <div class="channel-box reveal">
+        <div>
+          <span class="eyebrow">Начни с одного клика</span>
+          <h2>Забери подарок<br>в канале MAX.</h2>
+          <p>Подпишись, чтобы получить инструкцию по созданию MAX-канала и узнать, как открыть пробный доступ к курсу на 7 дней.</p>
+        </div>
+        <a class="button button-primary max-link" href="#signup">Подписаться в MAX <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section wrap" id="faq">
+      <div class="faq">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Без мелкого шрифта</span>
+          <h2>Частые вопросы</h2>
+          <p>Всё важное о пробном доступе — до подписки.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details>
+            <summary>Нужен ли опыт в программировании?</summary>
+            <p>Нет. Вайбкодинг помогает работать с ИИ на обычном языке. При этом результат важно проверять и постепенно понимать, как устроен созданный проект.</p>
+          </details>
+          <details>
+            <summary>Что входит в подарок на 7 дней?</summary>
+            <p>Пробный доступ, чтобы познакомиться с курсом и его форматом. Конкретный список открытых уроков и условия доступа будут доступны после перехода на Goodly.pro.</p>
+          </details>
+          <details>
+            <summary>Все уроки бесплатные?</summary>
+            <p>Нет, в обучении могут быть бесплатные и платные уроки. Перед оплатой платного материала будут показаны его стоимость и условия.</p>
+          </details>
+          <details>
+            <summary>Нужно ли покупать полный курс?</summary>
+            <p>Нет. Пробный доступ нужен, чтобы познакомиться с форматом и решить, подходит ли он тебе. Покупка полного курса — отдельное решение.</p>
+          </details>
+          <details>
+            <summary>Можно ли перепродавать курс и зарабатывать?</summary>
+            <p>Право перепродажи и порядок выплат определяются лицензией, офертой и правилами конкретного продукта и платформы. Проверь их перед покупкой и продажей. Результат и доход зависят от твоих действий и не гарантируются.</p>
+          </details>
+          <details>
+            <summary>А если у меня ещё нет канала в MAX?</summary>
+            <p>В подарок входит отдельная инструкция, которая поможет быстро создать свой канал в MAX.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-main">
+        <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>ВАЙБ<span style="color:var(--lime)">/</span>КОДИНГ</span></a>
+        <p class="footer-copy">Образовательные материалы и примеры не являются обещанием или гарантией дохода. Платные уроки, условия лицензии и перепродажи проверяй на странице соответствующего продукта Goodly.pro до оплаты.</p>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Вайбкодинг</span><span>Сначала навык. Потом — твой проект.</span></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const SETTINGS = {
+      maxChannelUrl: "https://max.ru/join/Unbp6shm2eQ6CPd4YiJ-XGOmaEN8Ah-06Uxn_ABVEAE"
+    };
+
+    const toast = document.querySelector("#toast");
+    let toastTimer;
+    document.querySelectorAll(".max-link").forEach((link) => {
+      if (SETTINGS.maxChannelUrl) {
+        const channelUrl = new URL(SETTINGS.maxChannelUrl);
+        if (channelUrl.protocol !== "https:") {
+          throw new Error("Ссылка на канал MAX должна использовать HTTPS.");
+        }
+        link.href = channelUrl.href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      } else {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          toast.textContent = "Ссылка на канал пока не подключена. Перед публикацией укажите приглашение в SETTINGS в конце файла index.html.";
+          toast.classList.add("show");
+          window.clearTimeout(toastTimer);
+          toastTimer = window.setTimeout(() => toast.classList.remove("show"), 5000);
+        });
+      }
+    });
+
+    document.querySelector("#year").textContent = String(new Date().getFullYear());
+
+    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const observer = new IntersectionObserver((entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            currentObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    } else {
+      document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
+    }
+  </script>
+</body>
+</html>
